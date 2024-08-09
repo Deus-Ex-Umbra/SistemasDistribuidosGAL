@@ -6,7 +6,7 @@ public class GestorEmpleados {
 
     public static void inicializarConexion() {
         MySQLIntermediaryQueries.setDriver("com.mysql.cj.jdbc.Driver");
-        MySQLIntermediaryQueries.connect("jdbc:mysql://localhost:3306/", "empresa", "usuario", "contraseña");
+        MySQLIntermediaryQueries.connect("jdbc:mysql://localhost:3306/", "dbempresa", "root", "");
     }
 
     public static void agregarEmpleado(Empleado empleado) {
