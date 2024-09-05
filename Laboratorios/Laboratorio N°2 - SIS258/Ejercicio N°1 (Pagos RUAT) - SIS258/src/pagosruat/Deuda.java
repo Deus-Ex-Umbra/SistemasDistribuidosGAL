@@ -1,4 +1,4 @@
-package ejercicio.n.pkg1.pagos.ruat.sis258;
+package pagosruat;
 
 import java.io.Serializable;
 

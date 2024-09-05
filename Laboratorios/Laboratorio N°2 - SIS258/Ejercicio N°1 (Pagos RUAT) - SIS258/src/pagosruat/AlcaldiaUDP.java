@@ -1,11 +1,11 @@
-package ejercicio.n.pkg1.pagos.ruat.sis258;
+package pagosruat;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 public class AlcaldiaUDP {
     public static void main(String[] args) {
-        try (DatagramSocket socket = new DatagramSocket(6000)) {
+        try (DatagramSocket socket = new DatagramSocket(5000)) {
             System.out.println("Servidor Alcaldía UDP listo.");
             while (true) {
                 byte[] buffer = new byte[256];

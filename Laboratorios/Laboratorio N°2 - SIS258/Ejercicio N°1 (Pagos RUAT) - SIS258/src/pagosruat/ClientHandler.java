@@ -1,4 +1,4 @@
-package ejercicio.n.pkg1.pagos.ruat.sis258;
+package pagosruat;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +37,7 @@ class ClientHandler extends Thread {
     }
     private void handleDebtQuery(String ci, PrintStream to_client) {
         try {
-            RuatInterface ruat = (RuatInterface) Naming.lookup("//localhost/RuatService");
+            RuatInterface ruat = (RuatInterface) Naming.lookup("//26.125.21.51/RuatService");
             Deuda[] debts = ruat.buscar(ci);
             StringBuilder response = new StringBuilder();
             for (Deuda debt : debts) {
@@ -54,7 +54,7 @@ class ClientHandler extends Thread {
     }
     private void handlePayment(String ci, int year, String tax_type, double amount, PrintStream to_client) {
         try {
-            RuatInterface ruat = (RuatInterface) Naming.lookup("//localhost/RuatService");
+            RuatInterface ruat = (RuatInterface) Naming.lookup("//26.125.21.51/RuatService");
             Deuda debt = new Deuda(ci, year, tax_type, amount);
             boolean result = ruat.pagar(debt);
 

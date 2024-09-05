@@ -1,4 +1,4 @@
-package ejercicio.n.pkg1.pagos.ruat.sis258;
+package pagosruat;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

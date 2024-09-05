@@ -1,4 +1,5 @@
-package ejercicio.n.pkg1.pagos.ruat.sis258;
+package pagosruat;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -6,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+
 public class RuatRMIUDP extends UnicastRemoteObject implements RuatInterface {
     private List<Deuda> deudaList;
 
@@ -25,11 +27,9 @@ public class RuatRMIUDP extends UnicastRemoteObject implements RuatInterface {
 
     @Override
     public boolean pagar(Deuda deuda) throws RemoteException {
-        // Verificar con la Alcaldía si el CI tiene observaciones
         boolean noObservations = consultarAlcaldia(deuda.getCi());
 
         if (noObservations) {
-            // Eliminar la deuda de la lista
             deudaList.removeIf(d -> d.getCi().equals(deuda.getCi()) && d.getYear() == deuda.getYear() && d.getTaxType().equals(deuda.getTaxType()));
             return true;
         } else {
@@ -40,7 +40,7 @@ public class RuatRMIUDP extends UnicastRemoteObject implements RuatInterface {
     private boolean consultarAlcaldia(String ci) {
         try {
             DatagramSocket socket = new DatagramSocket();
-            InetAddress address = InetAddress.getByName("localhost");
+            InetAddress address = InetAddress.getByName("26.125.21.51"); // IP de la Alcaldía
             String query = "consulta:" + ci;
             byte[] buffer = query.getBytes();
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, 6000);
@@ -62,9 +62,9 @@ public class RuatRMIUDP extends UnicastRemoteObject implements RuatInterface {
 
     public static void main(String[] args) {
         try {
-            java.rmi.registry.LocateRegistry.createRegistry(1099);
+            java.rmi.registry.LocateRegistry.createRegistry(5000);
             RuatRMIUDP ruatService = new RuatRMIUDP();
-            java.rmi.Naming.bind("//localhost/RuatService", ruatService);
+            java.rmi.Naming.bind("rmi://26.164.244.76/RuatService", ruatService); // IP del RUAT
             System.out.println("Servidor RUAT RMI listo.");
         } catch (Exception e) {
             System.out.println("Error en el servidor RUAT: " + e.getMessage());
