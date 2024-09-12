@@ -2,40 +2,33 @@ package sistemarmigráfico;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 
 public class AlcaldiaUDP {
     public static void main(String[] args) {
-        int port = 6000;  // Puerto para la alcaldía
-        try (DatagramSocket socket = new DatagramSocket(port)) {
-            System.out.println("Alcaldía UDP esperando consultas...");
-
-            byte[] buffer = new byte[1024];
+        try (DatagramSocket socket = new DatagramSocket(6000)) {
+            System.out.println("Servidor Alcaldía UDP listo.");
             while (true) {
-                DatagramPacket request = new DatagramPacket(buffer, buffer.length);
-                socket.receive(request);
+                byte[] buffer = new byte[256];
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+                socket.receive(packet);
 
-                String receivedMessage = new String(request.getData(), 0, request.getLength());
-                System.out.println("Consulta recibida: " + receivedMessage);
+                String received = new String(packet.getData(), 0, packet.getLength());
+                System.out.println("Consulta recibida: " + received);
 
-                // Si la consulta tiene el formato "consulta:ci"
-                if (receivedMessage.startsWith("consulta:")) {
-                    String ci = receivedMessage.split(":")[1].trim();
-                    boolean hasObservations = ci.equals("1234567"); // El CI 1234567 tiene observaciones
+                String ci = received.split(":")[1];
+                String response;
 
-                    String response = hasObservations ? "false" : "true";  // false = observaciones, true = sin observaciones
-                    byte[] responseData = response.getBytes();
-
-                    InetAddress clientAddress = request.getAddress();
-                    int clientPort = request.getPort();
-                    DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length, clientAddress, clientPort);
-                    socket.send(responsePacket);
-
-                    System.out.println("Respuesta enviada: " + response);
+                if (ci.equals("1234567")) {
+                    response = "respuesta:false";
+                } else {
+                    response = "respuesta:true";
                 }
+                byte[] responseBytes = response.getBytes();
+                DatagramPacket responsePacket = new DatagramPacket(responseBytes, responseBytes.length, packet.getAddress(), packet.getPort());
+                socket.send(responsePacket);
             }
         } catch (Exception e) {
-            System.out.println("Error en el servidor UDP de Alcaldía: " + e.getMessage());
+            System.out.println("Error en el servidor Alcaldía UDP: " + e.getMessage());
         }
     }
 }

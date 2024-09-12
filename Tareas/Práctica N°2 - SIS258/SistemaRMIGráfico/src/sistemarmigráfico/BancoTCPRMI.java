@@ -3,21 +3,23 @@ package sistemarmigráfico;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+import java.util.List;
+import java.util.ArrayList;
 public class BancoTCPRMI {
     public static void main(String[] args) {
         int port = 5000;
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("Banco escuchando en el puerto " + port);
-
+        List<Thread> clients = new ArrayList<>();
+       try (ServerSocket server = new ServerSocket(port)) {
+            System.out.println("Banco TCP esperando conexiones...");
             while (true) {
-                Socket clientSocket = serverSocket.accept();
+                Socket client = server.accept();
                 System.out.println("Cliente conectado.");
-                ClientHandler clientHandler = new ClientHandler(clientSocket);
-                new Thread(clientHandler).start();
+                Thread thread = new ClientHandler(client);
+                clients.add(thread);
+                thread.start();
             }
         } catch (IOException ex) {
-            System.out.println("Error en el servidor de banco: " + ex.getMessage());
+            System.out.println("Error en el servidor: " + ex.getMessage());
         }
     }
 }

@@ -10,121 +10,104 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RuatRMIUDP extends UnicastRemoteObject implements RuatInterface {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/DBDEUDAS";
-    private static final String USER = "root";
-    private static final String PASS = "password"; // Cambiar por la contraseña real
-    private static final String ALCALDIA_IP = "localhost"; // IP del servidor UDP de la Alcaldía
-    private static final int ALCALDIA_PORT = 9876; // Puerto del servidor UDP de la Alcaldía
+    private Connection connection;
 
-    public RuatRMIUDP() throws RemoteException {
+    protected RuatRMIUDP() throws RemoteException {
         super();
+        try {
+            // Conectar a la base de datos
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pagos_ruat", "root", "");
+        } catch (SQLException e) {
+            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+        }
     }
 
-    // Método para consultar deudas (RMI)
     @Override
-    public String consultarDeudas(String ci) throws RemoteException {
-        StringBuilder response = new StringBuilder();
+    public Deuda[] buscar(String ci) throws RemoteException {
+        try {
+            String query = "SELECT * FROM deudas WHERE ci = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, ci);
+            ResultSet resultSet = statement.executeQuery();
 
-        // Primero consulta a la alcaldía para ver si el CI tiene observaciones
-        if (consultarAlcaldia(ci)) {
-            return "El CI tiene observaciones, no se puede consultar deudas.";
-        }
-
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            String query = "SELECT Anio, Impuesto, Monto FROM Deuda WHERE CI = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, ci);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                int year = rs.getInt("Anio");
-                String taxType = rs.getString("Impuesto");
-                double amount = rs.getDouble("Monto");
-                response.append("Año: ").append(year)
-                        .append(", Impuesto: ").append(taxType)
-                        .append(", Monto: ").append(amount).append("\n");
+            // Crear lista dinámica para almacenar las deudas
+            List<Deuda> deudas = new ArrayList<>();
+            while (resultSet.next()) {
+                Deuda deuda = new Deuda(
+                    resultSet.getString("ci"),
+                    resultSet.getInt("year"),
+                    resultSet.getString("tax_type"),
+                    resultSet.getDouble("amount")
+                );
+                deudas.add(deuda);
             }
+            return deudas.toArray(new Deuda[0]);
 
-            if (response.length() == 0) {
-                return "No hay deudas.";
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return "Error consultando deudas.";
+        } catch (SQLException e) {
+            System.out.println("Error al buscar deudas: " + e.getMessage());
+            return new Deuda[0];
         }
-        return response.toString();
     }
 
-    // Método para procesar pagos (RMI)
     @Override
-    public String procesarPago(String ci, int year, String taxType, double amount) throws RemoteException {
-        if (consultarAlcaldia(ci)) {
-            return "El CI tiene observaciones, no se puede procesar el pago.";
-        }
+    public boolean pagar(Deuda deuda) throws RemoteException {
+        // Verificar con la Alcaldía si el CI tiene observaciones
+        boolean noObservations = consultarAlcaldia(deuda.getCi());
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            // Verificar si la deuda existe
-            String query = "SELECT Monto FROM Deuda WHERE CI = ? AND Anio = ? AND Impuesto = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, ci);
-            stmt.setInt(2, year);
-            stmt.setString(3, taxType);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                double currentAmount = rs.getDouble("Monto");
-                if (amount >= currentAmount) {
-                    String deleteQuery = "DELETE FROM Deuda WHERE CI = ? AND Anio = ? AND Impuesto = ?";
-                    PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery);
-                    deleteStmt.setString(1, ci);
-                    deleteStmt.setInt(2, year);
-                    deleteStmt.setString(3, taxType);
-                    deleteStmt.executeUpdate();
-                    return "Deuda pagada exitosamente.";
-                } else {
-                    return "Monto insuficiente para pagar la deuda.";
-                }
-            } else {
-                return "Deuda no encontrada.";
+        if (noObservations) {
+            try {
+                // Eliminar la deuda de la base de datos
+                String query = "DELETE FROM deudas WHERE ci = ? AND year = ? AND tax_type = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, deuda.getCi());
+                statement.setInt(2, deuda.getYear());
+                statement.setString(3, deuda.getTaxType());
+                int rowsAffected = statement.executeUpdate();
+                return rowsAffected > 0; // Si se elimina la deuda, retorna true
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar deuda: " + e.getMessage());
+                return false;
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return "Error procesando pago.";
+        } else {
+            return false;
         }
     }
 
-    // Método para consultar a la Alcaldía usando UDP
     private boolean consultarAlcaldia(String ci) {
-        try (DatagramSocket socket = new DatagramSocket()) {
-            InetAddress ip = InetAddress.getByName(ALCALDIA_IP);
-            byte[] sendBuffer = ("consulta:" + ci).getBytes();
-            DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, ip, ALCALDIA_PORT);
-            socket.send(sendPacket);
+        try {
+            DatagramSocket socket = new DatagramSocket();
+            InetAddress address = InetAddress.getByName("26.2.248.112");
+            String query = "consulta:" + ci;
+            byte[] buffer = query.getBytes();
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, 6000);
+            socket.send(packet);
 
-            byte[] receiveBuffer = new byte[1024];
-            DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
-            socket.receive(receivePacket);
-            String response = new String(receivePacket.getData(), 0, receivePacket.getLength());
+            byte[] responseBuffer = new byte[256];
+            DatagramPacket responsePacket = new DatagramPacket(responseBuffer, responseBuffer.length);
+            socket.receive(responsePacket);
 
-            return response.equals("true"); // Si es "true", el CI tiene observaciones
+            String response = new String(responsePacket.getData(), 0, responsePacket.getLength());
+            socket.close();
+
+            return response.equals("respuesta:true");
         } catch (Exception e) {
-            e.printStackTrace();
-            return true; // En caso de error, se asume que hay observaciones
+            System.out.println("Error al consultar a la Alcaldía: " + e.getMessage());
+            return false;
         }
     }
-    
+
     public static void main(String[] args) {
         try {
-            RuatRMIUDP ruat = new RuatRMIUDP();
-            Registry registry = LocateRegistry.createRegistry(1099); // Puerto RMI
-            registry.bind("RuatService", ruat);
-            System.out.println("Servidor RUAT listo para recibir peticiones...");
+            java.rmi.registry.LocateRegistry.createRegistry(1099);
+            RuatRMIUDP ruatService = new RuatRMIUDP();
+            java.rmi.Naming.bind("//26.2.248.112/RuatService", ruatService);
+            System.out.println("Servidor RUAT RMI listo.");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error en el servidor RUAT: " + e.getMessage());
         }
     }
 }
