@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|solutionrelative:segip.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|c:\\xampp\\htdocs\\sistemasdistribuidosgal\\ejercicios en clases\\pr\u00E1ctica ec n\u00B05\\servicios\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Ejercicios En Clases\\Pr\u00E1ctica EC N\u00B05\\Servicios\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|c:\\xampp\\htdocs\\sistemasdistribuidosgal\\ejercicios en clases\\pr\u00E1ctica ec n\u00B05\\servicios\\operaciones.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Ejercicios En Clases\\Pr\u00E1ctica EC N\u00B05\\Servicios\\operaciones.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C7C8B07-1620-49DF-B514-E0CC89D1EF99}|Servicios.csproj|solutionrelative:operaciones.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "segip.asmx.cs",
               "ToolTip": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Ejercicios En Clases\\Pr\u00E1ctica EC N\u00B05\\Servicios\\segip.asmx.cs",
               "RelativeToolTip": "segip.asmx.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAiwCkAAAA7AAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABgAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T01:45:31.02Z",
               "EditorCaption": ""
@@ -60,8 +60,7 @@
               "RelativeToolTip": "Operaciones.asmx.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAACoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T19:07:18.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-07T19:07:18.431Z"
             }
           ]
         }
