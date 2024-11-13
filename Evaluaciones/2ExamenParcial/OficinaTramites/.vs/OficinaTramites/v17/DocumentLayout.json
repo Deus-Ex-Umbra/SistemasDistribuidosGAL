@@ -1,0 +1,91 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\formtramites.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|solutionrelative:formtramites.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\formtramites.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|solutionrelative:formtramites.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|c:\\xampp\\htdocs\\sistemasdistribuidosgal\\evaluaciones\\2examenparcial\\oficinatramites\\formtramites.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|solutionrelative:formtramites.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD4E2927-6420-454F-8D4B-6FA29FD697CD}|OficinaTramites.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormTramites.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\FormTramites.cs",
+              "RelativeDocumentMoniker": "FormTramites.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\FormTramites.cs",
+              "RelativeToolTip": "FormTramites.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAA8wEEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T21:35:49.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T21:28:51.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormTramites.Designer.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\FormTramites.Designer.cs",
+              "RelativeDocumentMoniker": "FormTramites.Designer.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\FormTramites.Designer.cs",
+              "RelativeToolTip": "FormTramites.Designer.cs",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAowCYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T20:59:50.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormTramites.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\FormTramites.cs",
+              "RelativeDocumentMoniker": "FormTramites.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\SistemasDistribuidosGAL\\Evaluaciones\\2ExamenParcial\\OficinaTramites\\FormTramites.cs [Dise\u00F1o]",
+              "RelativeToolTip": "FormTramites.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T20:47:29.367Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

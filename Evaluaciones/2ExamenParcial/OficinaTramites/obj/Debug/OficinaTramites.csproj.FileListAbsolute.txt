@@ -1,0 +1,10 @@
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\bin\Debug\OficinaTramites.exe.config
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\bin\Debug\OficinaTramites.exe
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\bin\Debug\OficinaTramites.pdb
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.csproj.AssemblyReference.cache
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.FormTramites.resources
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.Properties.Resources.resources
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.csproj.GenerateResource.cache
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.exe
+C:\xampp\htdocs\SistemasDistribuidosGAL\Evaluaciones\2ExamenParcial\OficinaTramites\obj\Debug\OficinaTramites.pdb
